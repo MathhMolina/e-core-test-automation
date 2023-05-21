@@ -1,9 +1,9 @@
-import invoiceListPage from "../../pages/InvoiceListPage";
-import invoiceDetailsPage from "../../pages/InvoiceDetailsPage";
+import invoiceListPage from "../../pages/invoice-list-page";
+import invoiceDetailsPage from "../../pages/invoice-details-page";
 
 describe("Invoice Details", () => {
 	beforeEach(() => {
-		cy.fixture("login/loginSucessfulFixture").then((userData) => {
+		cy.fixture("login/login-successful-fixture").then((userData) => {
 			cy.login();
 		});
 		cy.visit("/account");
@@ -13,7 +13,7 @@ describe("Invoice Details", () => {
 			.InvoiceDetailsLink(1)
 			.invoke("removeAttr", "target")
 			.click();
-		cy.fixture("invoice-details/InvoiceDetailsFixture").then(
+		cy.fixture("invoice-details/invoice-details-fixture").then(
 			(invoiceData) => {
 				invoiceDetailsPage
 					.HotelName()
