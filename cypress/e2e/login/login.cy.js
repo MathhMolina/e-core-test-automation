@@ -1,4 +1,5 @@
 import loginPage from "../../pages/loginPage";
+import invoiceListPage from "../../pages/InvoiceListPage";
 
 describe("Login", () => {
 	beforeEach(() => {
@@ -8,7 +9,7 @@ describe("Login", () => {
 		cy.fixture("login/loginSucessfulFixture").then((userData) => {
 			loginPage.Login(userData.Username, userData.Password);
 			cy.url().should("be.equal", `${Cypress.config("baseUrl")}account`);
-			cy.contains("Invoice List");
+			invoiceListPage.InvoiceListHeader().should("exist");
 		});
 	});
 
@@ -22,7 +23,10 @@ describe("Login", () => {
 				credentials.Password,
 			() => {
 				loginPage.Login(credentials.Username, credentials.Password);
-				loginPage.Alert().contains("Wrong username or password");
+				loginPage
+					.Alert()
+					.contains("Wrong username or password")
+					.should("exist");
 			}
 		);
 	});
