@@ -5,7 +5,7 @@ describe("Login", () => {
 	beforeEach(() => {
 		cy.visit("/");
 	});
-	it("Should authenticate in the application with valid credentials", () => {
+	it("TC001 - Login (Positive)", () => {
 		cy.fixture("login/login-successful-fixture").then((userData) => {
 			loginPage.Login(userData.Username, userData.Password);
 			cy.url().should("be.equal", `${Cypress.config("baseUrl")}account`);
@@ -17,7 +17,7 @@ describe("Login", () => {
 
 	userData.forEach((credentials) => {
 		it(
-			"Should denies the user login with invalid credentials: " +
+			"TC002 - Login (Negative): " +
 				credentials.Username +
 				"/" +
 				credentials.Password,

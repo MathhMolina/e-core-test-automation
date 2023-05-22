@@ -8,7 +8,7 @@ describe("Invoice Details", () => {
 		});
 		cy.visit("/account");
 	});
-	it.only("Should show correct information at first invoice details page", () => {
+	it("TC003 - Validate invoice details", () => {
 		invoiceListPage
 			.InvoiceDetailsLink(1)
 			.invoke("removeAttr", "target")
