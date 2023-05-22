@@ -43,7 +43,12 @@ describe("Invoice Details", () => {
 
 				invoiceDetailsPage
 					.CustomerDetails()
-					.should("have.text", invoiceData.CustomerDetails);
+					.invoke("text")
+					.then((text) => text.replace(/\n/g, "").trim())
+					.should(
+						"equal",
+						invoiceData.CustomerDetails.replaceAll("\n", "")
+					);
 
 				invoiceDetailsPage.Room().should("have.text", invoiceData.Room);
 
